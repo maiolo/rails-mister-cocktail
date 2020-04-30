@@ -1,1 +1,17 @@
 // Specific CSS for your home-page
+.container {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+
+  .logo {
+    width: 50%;
+    margin: auto;
+  }
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
