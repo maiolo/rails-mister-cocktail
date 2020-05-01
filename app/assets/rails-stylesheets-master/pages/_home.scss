@@ -1,13 +1,29 @@
 // Specific CSS for your home-page
+$break-small: 700px;
+
 .container {
   width: 80%;
   margin: auto;
-  text-align: center;
+
 
   .logo {
     width: 50%;
     margin: auto;
+    @media screen and (max-width: $break-small){
+      width: 50%;
+      margin: 0;
+    }
   }
+}
+
+.main-logo {
+  @media screen and (max-width: $break-small){
+    width: 150%;
+  }
+}
+
+.main_page { 
+  text-align: center;
 }
 
 .cards {
@@ -15,3 +31,4 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+

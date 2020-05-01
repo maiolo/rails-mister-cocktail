@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='logo'>
-    <%= image_tag "main_logo.png", alt: "Maiolo Cocktails"%>
+    <%= image_tag "main_logo.png", alt: "Maiolo Cocktails", class: "main-logo"%>
   </div>
   <div class = "main_page">
     <div class="cards">
@@ -9,10 +9,11 @@
           <%# reservado para imagem %>
           <div class="card-body">
             <h5 class="card-title"><%=cocktail.name%></h5>
+            <%= link_to "See more", cocktail_path(cocktail), class: "btn btn-card btn-block btn-sm btn-danger"%>
           </div>
         </div>
       <%end%>
     </div>
-    <%= link_to "Create a Cocktail", new_cocktail_path, class: "btn btn-primary"%>
+    <%= link_to "Create a Cocktail", new_cocktail_path, class: "btn btn-lg btn-danger", style: "margin: 30px"%>
   </div>
 </div>

@@ -1,0 +1,25 @@
+.btn-outline-danger {
+  color: #B32727;
+  border-color: #B32727;
+
+  &:hover {
+    color: white;
+    background-color: #B32727;
+    border-color: #B32727;
+  }
+}
+
+.btn-danger {
+  color: white;
+  background-color: #B32727;
+  border-color: #B32727;
+
+  &:hover {
+    background-color: rgb(151, 0, 0);
+    border-color: rgb(151, 0, 0);
+  }
+}
+
+.btn-card {
+  border-radius: 50px;
+}

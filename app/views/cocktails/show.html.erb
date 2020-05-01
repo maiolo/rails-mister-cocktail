@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="cocktail-image">
+    <h5><%=@cocktail.name%></h5>
+  </div>
+  <div class = doses>
+    <ul>
+      <% @cocktail.doses.each do |dose|%>
+        <li><%= dose.description %> - <%= dose.ingredient.name %> </li>
+      <%end%>
+    </ul>
+  </div>
+  <div class="dropdown">
+  <button class="btn btn-danger btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Add a Dose
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div class="dropdown-item dose_form">
+    <%=simple_form_for [ @cocktail, @dose ] do |f|%>
+      <%= f.association :ingredient, input_html: { class: "beautiful-dropdown select2 js-example-basic-single" }, include_hidden: false %>
+      <%=f.input :description%>
+      <%=f.submit "Create a Dose", class: "bnt btn-danger"%>
+    <%end%>
+    </div>
+  </div>
+</div>
+</div>
