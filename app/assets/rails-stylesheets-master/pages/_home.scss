@@ -32,3 +32,11 @@ $break-small: 700px;
   justify-content: space-between;
 }
 
+.doses {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.dropdown-doses {
+  width: 300px;
+}

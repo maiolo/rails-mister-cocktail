@@ -1,26 +1,76 @@
 <div class="container">
   <div class="cocktail-image">
-    <h5><%=@cocktail.name%></h5>
-  </div>
-  <div class = doses>
-    <ul>
-      <% @cocktail.doses.each do |dose|%>
-        <li><%= dose.description %> - <%= dose.ingredient.name %> </li>
-      <%end%>
-    </ul>
-  </div>
-  <div class="dropdown">
-  <button class="btn btn-danger btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Add a Dose
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <div class="dropdown-item dose_form">
-    <%=simple_form_for [ @cocktail, @dose ] do |f|%>
-      <%= f.association :ingredient, input_html: { class: "beautiful-dropdown select2 js-example-basic-single" }, include_hidden: false %>
-      <%=f.input :description%>
-      <%=f.submit "Create a Dose", class: "bnt btn-danger"%>
+    <h3><%=@cocktail.name%></h3>
+    <%@cocktail.rating.times do %> 
+      <svg class="bi bi-star-fill" width="20px" height="20px" viewBox="0 0 16 16" fill="#AA0303" stroke="black" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+      </svg>
     <%end%>
+    <%(5-@cocktail.rating).times do%>
+      <svg class="bi bi-star" width="23px" height="23px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 00-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 00-.163-.505L1.71 6.745l4.052-.576a.525.525 0 00.393-.288l1.847-3.658 1.846 3.658a.525.525 0 00.393.288l4.052.575-2.906 2.77a.564.564 0 00-.163.506l.694 3.957-3.686-1.894a.503.503 0 00-.461 0z" clip-rule="evenodd"/>
+      </svg>
+    <%end%>
+  </div>
+  <%# ---------------------------------------------Div dos ingredientes-------------------------------------------------- %>
+  <div class="doses">
+    <div>
+      <ul>
+        <% @cocktail.doses.each do |dose|%>
+          <li><%= dose.description %> - <%= dose.ingredient.name %> </li>
+        <%end%>
+      </ul>
+    </div>
+  
+    <div class="dropdown dropdown-doses">
+      <button class="btn btn-danger btn-block dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Add a Dose
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-item dose_form">
+          <%=simple_form_for [ @cocktail, @dose ] do |f|%>
+            <%= f.association :ingredient, input_html: { class: "beautiful-dropdown select2 js-example-basic-single" }, include_hidden: false %>
+            <%=f.input :description%>
+            <%=f.submit "Create a Dose", class: "bnt btn-danger"%>
+          <%end%>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+  <%# -------------------------------------------Div dos ingredientes------------------------------------------------------- %>
+  <div class="reviews">
+    <div class="show-reviews">
+      <ul>
+        <% @cocktail.reviews.each do |review| %>
+          <li> 
+            <%= review.content %> - 
+            <%review.rating.times do %> 
+              <svg class="bi bi-star-fill" width="20px" height="20px" viewBox="0 0 16 16" fill="#AA0303" stroke="black" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+            <%end%>
+            <%(5-review.rating).times do%>
+              <svg class="bi bi-star" width="23px" height="23px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 00-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 00-.163-.505L1.71 6.745l4.052-.576a.525.525 0 00.393-.288l1.847-3.658 1.846 3.658a.525.525 0 00.393.288l4.052.575-2.906 2.77a.564.564 0 00-.163.506l.694 3.957-3.686-1.894a.503.503 0 00-.461 0z" clip-rule="evenodd"/>
+              </svg>
+            <%end%>
+          </li>
+        <% end %>
+        </div>
+      </ul>
+    <div class="dropdown">
+      <button class="btn btn-danger btn-block dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Add a Comment
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-item dose_form">
+          <%=simple_form_for [ @cocktail, @review ] do |f|%>
+            <%= f.input :rating, collection: 0..5, input_html: { class: "beautiful-dropdown select2 js-example-basic-single" }, include_hidden: false %>
+            <%=f.input :content%>
+            <%=f.submit "Give it a Rating", class: "bnt btn-danger"%>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
